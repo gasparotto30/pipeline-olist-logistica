@@ -58,3 +58,4 @@ def ingerir(db_path: Path | str = DB_PATH, raw_dir: Path = RAW_DIR) -> None:
 
 if __name__ == "__main__":
     ingerir()
+

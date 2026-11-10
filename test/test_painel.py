@@ -52,3 +52,4 @@ def test_painel_ler_retorna_dataframes_corretos(tmp_path: Path) -> None:
     resultado = painel.ler(["kpis_logistica"], db_path=db_file)
     assert "kpis_logistica" in resultado
     assert resultado["kpis_logistica"].iloc[0]["pct_no_prazo"] == 95.0
+

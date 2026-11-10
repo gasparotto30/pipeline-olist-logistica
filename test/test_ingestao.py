@@ -36,3 +36,4 @@ def test_arquivo_faltando_encerra_com_system_exit(tmp_path: Path) -> None:
     
     with pytest.raises(SystemExit):
         ingerir(db_path=db_file, raw_dir=raw_dir)
+

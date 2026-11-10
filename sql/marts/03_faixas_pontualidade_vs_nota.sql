@@ -39,3 +39,4 @@ FROM desvio_entrega d
 JOIN avaliacao_pedido a ON a.pedido_id = d.pedido_id
 GROUP BY d.ordem, d.faixa_pontualidade
 ORDER BY d.ordem ASC;
+

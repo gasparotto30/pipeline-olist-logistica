@@ -16,12 +16,14 @@ WITH pedidos_vendedor AS (
 )
 SELECT
     pv.vendedor_id,
+    v.nome_vendedor,
     v.uf,
     count(*) AS pedidos_entregues,
     round(100.0 * sum(pv.no_prazo) / count(*), 1) AS pct_no_prazo,
     round(avg(pv.dias_entrega), 1) AS dias_medio_entrega
 FROM pedidos_vendedor pv
 JOIN refined.vendedores v ON v.vendedor_id = pv.vendedor_id
-GROUP BY pv.vendedor_id, v.uf
+GROUP BY pv.vendedor_id, v.nome_vendedor, v.uf
 HAVING count(*) >= 20
 ORDER BY pct_no_prazo DESC, pedidos_entregues DESC;
+

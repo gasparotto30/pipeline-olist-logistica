@@ -12,3 +12,4 @@ WHERE status = 'delivered'
   AND data_compra IS NOT NULL
 GROUP BY strftime(data_compra, '%Y-%m')
 ORDER BY ano_mes ASC;
+

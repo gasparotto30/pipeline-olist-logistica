@@ -24,3 +24,4 @@ def init_db(db_path: Path | str = DB_PATH) -> None:
         con.execute("CREATE SCHEMA IF NOT EXISTS raw;")
         con.execute("CREATE SCHEMA IF NOT EXISTS refined;")
         con.execute("CREATE SCHEMA IF NOT EXISTS marts;")
+

@@ -29,3 +29,4 @@ SELECT
     round(100.0 * count(*) FILTER (WHERE a.nota <= 2) / count(a.pedido_id), 1) AS pct_nota_baixa
 FROM entregas e
 LEFT JOIN avaliacoes_entregues a ON a.pedido_id = e.pedido_id;
+

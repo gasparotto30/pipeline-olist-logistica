@@ -28,3 +28,4 @@ omit = ["test/*", "app.py", "ui.py", ".venv/*"]
 [tool.coverage.report]
 fail_under = 60
 show_missing = true
+

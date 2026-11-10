@@ -50,6 +50,7 @@ TRANSFORMACOES = {
         CREATE TABLE refined.vendedores AS
         SELECT DISTINCT
             vendedor_id,
+            nome_vendedor,
             cep,
             cidade,
             uf
@@ -96,7 +97,21 @@ def transformar(db_path: Path | str = DB_PATH) -> None:
             
             try:
                 con.execute(f"DROP TABLE IF EXISTS refined.{tabela};")
-                con.execute(sql)
+                sql_exec = sql
+                if tabela == "vendedores":
+                    cols = [c[0] for c in con.execute("DESCRIBE raw.vendedores;").fetchall()]
+                    if "nome_vendedor" not in cols:
+                        sql_exec = """
+                            CREATE TABLE refined.vendedores AS
+                            SELECT DISTINCT
+                                vendedor_id,
+                                'Vendedor ' || vendedor_id AS nome_vendedor,
+                                cep,
+                                cidade,
+                                uf
+                            FROM raw.vendedores;
+                        """
+                con.execute(sql_exec)
                 qtd = con.execute(f"SELECT count(*) FROM refined.{tabela};").fetchone()[0]
                 print(f"✓ refined.{tabela} ({qtd:,} linhas)")
             except Exception as e:
@@ -106,3 +121,4 @@ def transformar(db_path: Path | str = DB_PATH) -> None:
 
 if __name__ == "__main__":
     transformar()
+

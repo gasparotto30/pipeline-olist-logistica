@@ -175,3 +175,4 @@ with col_geo:
 with col_seller:
     fig_seller = painel.grafico_sellers_prazo(dados["ranking_sellers_logistica"], top_n=10)
     st.plotly_chart(fig_seller, width="stretch")
+

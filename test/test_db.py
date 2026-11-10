@@ -37,3 +37,4 @@ def test_conexao_read_only_impede_escrita(tmp_path: Path) -> None:
             escreveu = False
             
     assert not escreveu
+

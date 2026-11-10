@@ -102,3 +102,4 @@ def executar_marts(db_path: Path | str = DB_PATH, sql_dir: Path = SQL_DIR) -> No
 
 if __name__ == "__main__":
     executar_marts()
+

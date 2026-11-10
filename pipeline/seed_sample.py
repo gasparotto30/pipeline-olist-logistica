@@ -28,11 +28,25 @@ def gerar_amostra(num_pedidos: int = 500) -> None:
     pd.DataFrame(clientes).to_csv(RAW_DIR / "clientes.csv", index=False)
     
     # 2. Vendedores
+    nomes_vendedores = [
+        "Ana Paula Silva", "Carlos Eduardo Santos", "Juliana Costa", "Marcos Vinicius Pereira",
+        "Mariana Rodrigues", "Lucas Fernandes", "Beatriz Souza", "Rafael Almeida",
+        "Camila Lima", "Gabriel Ribeiro", "Larissa Carvalho", "Felipe Gomes",
+        "Amanda Martins", "Thiago Barbosa", "Bruna Araujo", "Rodrigo Rocha",
+        "Patricia Dias", "Bruno Castro", "Fernanda Pinto", "Diego Moreira",
+        "Leticia Cardoso", "Leonardo Teixeira", "Jessica Cavalcanti", "Andre Cavalcante",
+        "Vanessa Barros", "Guilherme Correia", "Aline Monteiro", "Marcelo Mendes",
+        "Daniela Freire", "Caio Cunha", "Natalia Moura", "Renan Nogueira",
+        "Priscila Ramos", "Fabio Farias", "Sabrina Guimaraes", "Igor Peixoto",
+        "Renata Azevedo", "Gustavo Neves", "Tatiana Silveira"
+    ]
     vendedores = []
     for i in range(1, 40):
         uf = random.choice(["SP", "RJ", "MG", "PR", "SC", "RS"])
+        nome = nomes_vendedores[(i - 1) % len(nomes_vendedores)]
         vendedores.append({
             "vendedor_id": f"v_{i:03d}",
+            "nome_vendedor": nome,
             "cep": f"{random.randint(10000, 99999):05d}",
             "cidade": f"Polo {uf}",
             "uf": uf,
@@ -138,3 +152,4 @@ def gerar_amostra(num_pedidos: int = 500) -> None:
 
 if __name__ == "__main__":
     gerar_amostra()
+

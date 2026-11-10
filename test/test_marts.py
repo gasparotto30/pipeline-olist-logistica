@@ -86,3 +86,4 @@ def test_regras_de_entrega_no_prazo_com_dados_inventados(tmp_path: Path) -> None
         pedidos_entregues, pct_no_prazo = res
         assert pedidos_entregues == 2
         assert pct_no_prazo == 50.0
+

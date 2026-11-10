@@ -26,3 +26,4 @@ SELECT
     round(median(dias_transporte), 1) AS dias_mediana
 FROM tempos
 ORDER BY ordem ASC;
+

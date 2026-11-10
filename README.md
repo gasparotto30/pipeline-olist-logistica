@@ -75,3 +75,4 @@ uv run pytest --cov
 - **Geração de Spec & Código:** O pipeline foi estruturado a partir de especificações declarativas rígidas.
 - **Isolamento de concorrência:** A conexão com o DuckDB no `painel.py` utiliza `read_only=True` abrindo e fechando no bloco de execução para garantir que o pipeline de atualização possa rodar simultaneamente ao painel sem gerar *database lock*.
 - **Conferência estrita:** O frontend não executa agregações analíticas (`groupby`, `sum`, `mean`, etc.). Todo número novo nasce primeiro como um arquivo `.sql` no diretório `sql/marts/`.
+

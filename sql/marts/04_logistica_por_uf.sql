@@ -14,3 +14,4 @@ WHERE p.status = 'delivered'
   AND p.data_compra IS NOT NULL
 GROUP BY c.uf
 ORDER BY pct_no_prazo DESC, entregues DESC;
+

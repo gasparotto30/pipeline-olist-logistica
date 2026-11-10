@@ -183,15 +183,16 @@ def grafico_logistica_uf(df: pd.DataFrame, top_n: int = 10) -> go.Figure:
 
 def grafico_sellers_prazo(df: pd.DataFrame, top_n: int = 10) -> go.Figure:
     """Gráfico de barras horizontais: Top vendedores consistentes em prazo."""
+    eixo_y = "nome_vendedor" if "nome_vendedor" in df.columns else "vendedor_id"
     df_top = df.head(top_n).iloc[::-1]
     fig = px.bar(
         df_top,
         x="pct_no_prazo",
-        y="vendedor_id",
+        y=eixo_y,
         orientation="h",
         text="pct_no_prazo",
         title=f"06 · Sellers de Alta Performance em Pontualidade (Top {top_n})",
-        labels={"vendedor_id": "Vendedor", "pct_no_prazo": "SLA (%)"},
+        labels={eixo_y: "Vendedor", "pct_no_prazo": "SLA (%)"},
     )
     fig.update_traces(
         marker_color=PALETA_VERDE,

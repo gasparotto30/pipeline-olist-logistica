@@ -95,3 +95,4 @@ def test_valor_invalido_de_data_encerra_com_system_exit(tmp_path: Path) -> None:
 
     with pytest.raises(SystemExit):
         transformar(db_path=db_file)
+
