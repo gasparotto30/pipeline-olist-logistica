@@ -1,0 +1,30 @@
+[project]
+name = "pipeline-olist-logistica"
+version = "0.1.0"
+description = "Pipeline e Dashboard Analítico Olist - Logística & Experiência do Cliente"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "duckdb>=1.0.0",
+    "pandas>=2.0.0",
+    "plotly>=5.20.0",
+    "streamlit>=1.35.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=5.0.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["test"]
+pythonpath = ["."]
+
+[tool.coverage.run]
+source = ["."]
+omit = ["test/*", "app.py", "ui.py", ".venv/*"]
+
+[tool.coverage.report]
+fail_under = 60
+show_missing = true
