@@ -26,12 +26,6 @@ st.set_page_config(
 )
 
 
-@st.cache_data
-def carregar_dados() -> dict:
-    """Lê todos os marts obrigatórios com tratamento de cache."""
-    return painel.ler(MARTS_OBRIGATORIOS)
-
-
 # 1. Tratamento de Erros e Validação de Banco
 if not DB_FILE.exists():
     st.error(
@@ -40,8 +34,15 @@ if not DB_FILE.exists():
     )
     st.stop()
 
+
+@st.cache_data
+def carregar_dados(mtime: float) -> dict:
+    """Lê todos os marts obrigatórios com invalidação automática se o banco for modificado."""
+    return painel.ler(MARTS_OBRIGATORIOS)
+
+
 try:
-    dados = carregar_dados()
+    dados = carregar_dados(DB_FILE.stat().st_mtime)
 except Exception as e:
     st.error(
         f"Erro ao carregar marts necessários: {e}\n\n"

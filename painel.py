@@ -183,16 +183,20 @@ def grafico_logistica_uf(df: pd.DataFrame, top_n: int = 10) -> go.Figure:
 
 def grafico_sellers_prazo(df: pd.DataFrame, top_n: int = 10) -> go.Figure:
     """Gráfico de barras horizontais: Top vendedores consistentes em prazo."""
-    eixo_y = "nome_vendedor" if "nome_vendedor" in df.columns else "vendedor_id"
-    df_top = df.head(top_n).iloc[::-1]
+    df_plot = df.head(top_n).iloc[::-1].copy()
+    if "nome_vendedor" in df_plot.columns:
+        df_plot["rotulo_vendedor"] = df_plot["nome_vendedor"]
+    else:
+        df_plot["rotulo_vendedor"] = df_plot["vendedor_id"]
+
     fig = px.bar(
-        df_top,
+        df_plot,
         x="pct_no_prazo",
-        y=eixo_y,
+        y="rotulo_vendedor",
         orientation="h",
         text="pct_no_prazo",
         title=f"06 · Sellers de Alta Performance em Pontualidade (Top {top_n})",
-        labels={eixo_y: "Vendedor", "pct_no_prazo": "SLA (%)"},
+        labels={"rotulo_vendedor": "Vendedor", "pct_no_prazo": "SLA (%)"},
     )
     fig.update_traces(
         marker_color=PALETA_VERDE,
@@ -200,8 +204,9 @@ def grafico_sellers_prazo(df: pd.DataFrame, top_n: int = 10) -> go.Figure:
         textposition="outside",
     )
     fig.update_layout(
-        margin=dict(l=40, r=40, t=50, b=40),
+        margin=dict(l=160, r=40, t=50, b=40),
         xaxis_title="SLA (%)",
         yaxis_title="",
+        yaxis=dict(automargin=True),
     )
     return fig
